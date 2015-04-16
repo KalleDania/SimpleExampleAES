@@ -56,17 +56,17 @@ namespace AesExample
             return Decrypt(Convert.FromBase64String(base64cipher));
         }
               
-        public byte[] EncryptToByte(string cipherText)
+        public byte[] EncryptToByte(string plain)
         {
             ICryptoTransform encryptor = rijndael.CreateEncryptor();
-            byte[] cipher = unicodeEncoding.GetBytes(cipherText);
+            byte[] cipher = unicodeEncoding.GetBytes(plain);
             byte[] encryptedValue = encryptor.TransformFinalBlock(cipher, 0, cipher.Length);
             return encryptedValue;
         }
 
-        public string EncryptToBase64String(string cipherText)
+        public string EncryptToBase64String(string plain)
         {
-            return Convert.ToBase64String(EncryptToByte(cipherText));
+            return Convert.ToBase64String(EncryptToByte(plain));
         }
         
         public string GetKey()
